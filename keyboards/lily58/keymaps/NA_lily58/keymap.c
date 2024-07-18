@@ -393,14 +393,18 @@ static void print_status_narrow(void) {
             break;
         
     }
-    if (stop_direction == 1) {
+    
+    switch (cached_direction) {
+        case 1:
             oled_set_cursor(0, 5);
             oled_write_P(PSTR("PLY1"), false);
-        }
-    if (stop_direction == -1) {
+            break;
+        case -1:
             oled_set_cursor(5, 5);
             oled_write_P(PSTR("PLY2"), false);
-        }
+            break;
+        
+    }
 
     /*jiggler*/
 
