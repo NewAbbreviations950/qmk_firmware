@@ -394,7 +394,7 @@ static void print_status_narrow(void) {
         
     }
     
-    switch (cached_direction) {
+    switch (stop_direction) {
         case 1:
             oled_set_cursor(0, 5);
             oled_write_P(PSTR("PLY1"), false);
