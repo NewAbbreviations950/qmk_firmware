@@ -322,13 +322,13 @@ int8_t stop_direction;
 bool is_recording = false;
 
 void dynamic_macro_record_start_user(int8_t direction) {
-    cached_direction = direction;
     is_recording = true;
+    cached_direction = direction;
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
-    stop_direction = direction;
     is_recording = false;
+    stop_direction = direction;
 }
 
 
@@ -382,16 +382,17 @@ static void print_status_narrow(void) {
 
     /*Dynamic macros */
 
-    switch (cached_direction) {
-        case 1:
-            oled_set_cursor(0, 5);
-            oled_write_P(PSTR("REC1"), false);
-            break;
-        case -1:
-            oled_set_cursor(5, 5);
-            oled_write_P(PSTR("REC2"), false);
-            break;
-        
+    while (is_recording) {
+        switch (cached_direction) {
+            case 1:
+                oled_set_cursor(0, 5);
+                oled_write_P(PSTR("REC1"), false);
+                break;
+            case -1:
+                oled_set_cursor(5, 5);
+                oled_write_P(PSTR("REC2"), false);
+                break;
+        }
     }
     
     switch (stop_direction) {
