@@ -319,15 +319,14 @@ static uint32_t idle_callback(uint32_t trigger_time, void* cb_arg) {
 
 int8_t cached_direction;
 int8_t stop_direction;
-bool is_recording = false;
+bool is_recording_1 = false;
+bool is_recording_2 = false;
 
 void dynamic_macro_record_start_user(int8_t direction) {
-    is_recording = true;
     cached_direction = direction;
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
-    is_recording = false;
     stop_direction = direction;
 }
 
@@ -382,17 +381,20 @@ static void print_status_narrow(void) {
 
     /*Dynamic macros */
 
-    while (is_recording) {
-        switch (cached_direction) {
-            case 1:
+    switch (cached_direction) {
+        case 1:
+            if (is_recording_1) {
                 oled_set_cursor(0, 5);
                 oled_write_P(PSTR("REC1"), false);
-                break;
-            case -1:
+            }
+            break;
+        case -1:
+            if (is_recording_2) {
                 oled_set_cursor(5, 5);
                 oled_write_P(PSTR("REC2"), false);
-                break;
-        }
+            }
+            break;
+            
     }
     
     switch (stop_direction) {
@@ -486,6 +488,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
 
             break;
+
+    case DM_REC1:
+            if (record->event.pressed) {
+                is_recording_1 = !is_recording;
+            }
+
+            break;
+
+    case DM_REC2:
+            if (record->event.pressed) {
+                is_recording_2 = !is_recording;
+            }
+
+            break;
+      
     }
     
     return process_record_keymap(keycode, record) && process_record_secrets(keycode, record)
