@@ -396,6 +396,8 @@ static void print_status_narrow(void) {
                 oled_write_P(PSTR("REC2"), false);
             }
             break;
+        default:
+            break;
             
     }
     
@@ -407,6 +409,8 @@ static void print_status_narrow(void) {
         case -1:
             oled_set_cursor(5, 5);
             oled_write_P(PSTR("PLY2"), false);
+            break;
+        default:
             break;
         
     }
