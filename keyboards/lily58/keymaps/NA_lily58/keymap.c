@@ -385,16 +385,12 @@ static void print_status_narrow(void) {
 
     switch (cached_direction) {
         case 1:
-            if (is_recording_1) {
-                oled_set_cursor(0, 5);
-                oled_write_P(PSTR("REC1"), false);
-            }
+            oled_set_cursor(0, 5);
+            oled_write_P(PSTR("REC1"), false);
             break;
         case -1:
-            if (is_recording_2) {
-                oled_set_cursor(5, 5);
-                oled_write_P(PSTR("REC2"), false);
-            }
+            oled_set_cursor(5, 5);
+            oled_write_P(PSTR("REC2"), false);
             break;
         default:
             break;
