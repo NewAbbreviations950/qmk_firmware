@@ -383,43 +383,42 @@ static void print_status_narrow(void) {
 
     /*Dynamic macros */
 
-    switch (cached_direction) {
-        case 1:
-            oled_set_cursor(0, 5);
+    oled_set_cursor(0, 5);
+    switch (is_recording_1) {
+        case TRUE:
             oled_write_P(PSTR("REC1"), false);
             break;
-        case -1:
-            oled_set_cursor(5, 5);
-            oled_write_P(PSTR("REC2"), false);
+        case FALSE:
+            oled_write_P(PSTR("PLY1"), false);
             break;
         default:
+            oled_write_P(PSTR("    "), false);
             break;
             
     }
-    
-    switch (stop_direction) {
-        case 1:
-            oled_set_cursor(0, 5);
-            oled_write_P(PSTR("PLY1"), false);
+
+    oled_set_cursor(5, 5);
+    switch (is_recording_2) {
+        case TRUE:
+            oled_write_P(PSTR("REC2"), false);
             break;
-        case -1:
-            oled_set_cursor(5, 5);
+        case FALSE:
             oled_write_P(PSTR("PLY2"), false);
             break;
         default:
+            oled_write_P(PSTR("    "), false);
             break;
         
     }
 
     /*jiggler*/
 
+    oled_set_cursor(0, 7);
     switch (is_jiggling) {
         case true:
-            oled_set_cursor(0, 7);
             oled_write_P(PSTR("Jiggle"), false);
             break;
         default:
-            oled_set_cursor(0, 7);
             oled_write_P(PSTR("      "), false);
    }
 
