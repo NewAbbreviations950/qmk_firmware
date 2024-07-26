@@ -385,10 +385,10 @@ static void print_status_narrow(void) {
 
     oled_set_cursor(0, 5);
     switch (is_recording_1) {
-        case true:
+        case 1:
             oled_write_P(PSTR("REC1"), false);
             break;
-        case false:
+        case 0:
             oled_write_P(PSTR("PLY1"), false);
             break;
         default:
@@ -399,10 +399,10 @@ static void print_status_narrow(void) {
 
     oled_set_cursor(5, 5);
     switch (is_recording_2) {
-        case true:
+        case 1:
             oled_write_P(PSTR("REC2"), false);
             break;
-        case false:
+        case 0:
             oled_write_P(PSTR("PLY2"), false);
             break;
         default:
