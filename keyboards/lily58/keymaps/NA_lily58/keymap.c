@@ -491,22 +491,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_LGUI(SS_LCTL(SS_TAP(X_RIGHT))));
             }
 
-            break;
-
-    case DM_REC1:
-            if (record->event.pressed) {
-                is_recording_1 = !is_recording_1;
-            }
-
-            break;
-
-    case DM_REC2:
-            if (record->event.pressed) {
-                is_recording_2 = !is_recording_2;
-            }
-
-            break;
-      
+            break;   
     }
     
     return process_record_keymap(keycode, record) && process_record_secrets(keycode, record)
