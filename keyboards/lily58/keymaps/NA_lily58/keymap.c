@@ -393,19 +393,28 @@ static void print_status_narrow(void) {
     }
 
     oled_set_cursor(5, 5);
-    switch (is_recording_2) {
-        case 1:
-            oled_write_P(PSTR("REC2"), false);
-            break;
-        case 0:
-            oled_write_P(PSTR("PLY2"), false);
-            break;
-        default:
-            oled_write_P(PSTR("    "), false);
-            break;
-        
+    if (is_recording_2) {
+        oled_write_P(PSTR("REC2"), false);
+    } else if(!is_recording_2){
+        oled_write_P(PSTR("PLY2"), false);
+    } else{
+        oled_write_P(PSTR("    "), false);
     }
 
+/*    oled_set_cursor(5, 5);
+ *   switch (is_recording_2) {
+ *       case 1:
+ *           oled_write_P(PSTR("REC2"), false);
+ *           break;
+ *       case 0:
+ *           oled_write_P(PSTR("PLY2"), false);
+ *           break;
+ *       default:
+ *           oled_write_P(PSTR("    "), false);
+ *           break;
+ *      
+ *  }
+*/
     /*jiggler*/
 
     oled_set_cursor(0, 7);
