@@ -384,17 +384,12 @@ static void print_status_narrow(void) {
     /*Dynamic macros */
 
     oled_set_cursor(0, 5);
-    switch (is_recording_1) {
-        case 1:
-            oled_write_P(PSTR("REC1"), false);
-            break;
-        case 0:
-            oled_write_P(PSTR("PLY1"), false);
-            break;
-        default:
-            oled_write_P(PSTR("    "), false);
-            break;
-            
+    if (is_recording_1) {
+        oled_write_P(PSTR("REC1"), false);
+    } else if(!is_recording_1){
+        oled_write_P(PSTR("PLY1"), false);
+    } else{
+        oled_write_P(PSTR("    "), false);
     }
 
     oled_set_cursor(5, 5);
