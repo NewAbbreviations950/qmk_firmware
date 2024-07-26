@@ -474,7 +474,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
      
       case KC_JIGG:
             if (record->event.pressed) {
-                    is_jiggling = !is_jiggling; /*flip boolean to true*/
+                    is_jiggling = !is_jiggling; /* flip boolean to true */
             }
 
             break;
