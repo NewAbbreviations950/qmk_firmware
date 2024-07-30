@@ -161,7 +161,7 @@ static void render_logo(void) {
 
 /* timers */
 uint32_t anim_timer = 0;
-unit32_t sleep_timer = 0;
+uint32_t sleep_timer = 0;
 
 /* current frame */
 uint8_t current_frame = 0;
