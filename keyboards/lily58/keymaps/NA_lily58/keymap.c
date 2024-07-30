@@ -326,10 +326,20 @@ bool is_recording_2 = false;
 
 void dynamic_macro_record_start_user(int8_t direction) {
     cached_direction = direction;
+    if (cached_direction == 1){
+        is_recording_1 = true;
+    } else if (cached_direction == -1){
+        is_recording_2 == true;
+    }
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
     stop_direction = direction;
+    if (stop_direction == 1){
+        is_recording_1 = false;
+    } else if (stop_direction == -1){
+        is_recording_2 = false;
+    }
 }
 
 
@@ -384,19 +394,20 @@ static void print_status_narrow(void) {
     /*Dynamic macros */
 
     oled_set_cursor(0, 5);
-    if (cached_direction == 1) {
-        oled_set_cursor(0, 5);
+    if (cached_direction == 0) {
+        oled_write_P(PSTR("    "), false);
+    } else if (is_recording_1){
         oled_write_P(PSTR("REC1"), false);
-    } else if (cached_direction == -1){
-        oled_set_cursor(5, 5);
-        oled_write_P(PSTR("REC2"), false);
+    } else if (!is_recording_1 && cached_direction != 0){
+        oled_write_P(PSTR("PLY1"), false);
     }
 
-    if (stop_direction == 1) {
-        oled_set_cursor(0, 5);
-        oled_write_P(PSTR("PLY1"), false);
-    } else if (stop_direction == -1){
-        oled_set_cursor(5, 5);
+    oled_set_cursor(5, 5);
+    if (cached_direction == 0) {
+        oled_write_P(PSTR("    "), false);
+    } else if (is_recording_2){
+        oled_write_P(PSTR("REC2"), false);
+    } else if (!is_recording_2 && cached_direction != 0){
         oled_write_P(PSTR("PLY2"), false);
     }
 
