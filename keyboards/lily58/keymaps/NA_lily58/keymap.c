@@ -329,7 +329,7 @@ void dynamic_macro_record_start_user(int8_t direction) {
     if (cached_direction == 1){
         is_recording_1 = true;
     } else if (cached_direction == -1){
-        is_recording_2 == true;
+        is_recording_2 = true;
     }
 }
 
