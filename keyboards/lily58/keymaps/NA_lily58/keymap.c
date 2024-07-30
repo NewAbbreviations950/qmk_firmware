@@ -283,6 +283,8 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
         anim_timer = timer_read32();
         animate_luna();
     }
+
+    return !oled_active; // returns oled being inactive so the oled will go to sleep normally
 }
 
 /* KEYBOARD PET END */
