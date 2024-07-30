@@ -161,7 +161,6 @@ static void render_logo(void) {
 
 /* timers */
 uint32_t anim_timer = 0;
-uint32_t sleep_timer = 0;
 
 /* current frame */
 uint8_t current_frame = 0;
@@ -269,20 +268,10 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
         }
     }
 
-/*#   if OLED_TIMEOUT > 0
-*    // the animation prevents the normal timeout from occuring
-*    if (last_input_activity_elapsed() > OLED_TIMEOUT && last_led_activity_elapsed() > OLED_TIMEOUT) {
-*        oled_off();
-*        return;
-*    } else {
-*        oled_on();
-*    }
-*#   endif
-*/
-    /* animation timer */
+
+    /* animation and sleep timer */
     if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION && last_input_activity_elapsed() < OLED_TIMEOUT) {
         anim_timer = timer_read32();
-        sleep_timer = timer_read32();
         animate_luna();
     } else if (last_input_activity_elapsed() > OLED_TIMEOUT && last_led_activity_elapsed() > OLED_TIMEOUT) {
         oled_off();
@@ -416,20 +405,7 @@ static void print_status_narrow(void) {
         oled_write_P(PSTR("PLY2"), false);
     }
 
-/*    oled_set_cursor(5, 5);
- *   switch (is_recording_2) {
- *       case 1:
- *           oled_write_P(PSTR("REC2"), false);
- *           break;
- *       case 0:
- *           oled_write_P(PSTR("PLY2"), false);
- *           break;
- *       default:
- *           oled_write_P(PSTR("    "), false);
- *           break;
- *      
- *  }
-*/
+
     /*jiggler*/
 
     oled_set_cursor(0, 7);
