@@ -161,6 +161,7 @@ static void render_logo(void) {
 
 /* timers */
 uint32_t anim_timer = 0;
+unit32_t sleep_timer = 0;
 
 /* current frame */
 uint8_t current_frame = 0;
@@ -282,6 +283,9 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
     if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION && last_input_activity_elapsed() < OLED_TIMEOUT) {
         anim_timer = timer_read32();
         animate_luna();
+        sleep_timer = timer_read32();
+    } else if (timer_elapsed32(sleep_timer) >= OLED_TIMEOUT) {
+        oled_off();
     }
 
 }
