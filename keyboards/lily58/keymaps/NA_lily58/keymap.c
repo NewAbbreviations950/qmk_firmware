@@ -282,9 +282,9 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
     /* animation timer */
     if (timer_elapsed32(anim_timer) > ANIM_FRAME_DURATION && last_input_activity_elapsed() < OLED_TIMEOUT) {
         anim_timer = timer_read32();
-        animate_luna();
         sleep_timer = timer_read32();
-    } else if (timer_elapsed32(sleep_timer) >= OLED_TIMEOUT) {
+        animate_luna();
+    } else {
         oled_off();
     }
 
