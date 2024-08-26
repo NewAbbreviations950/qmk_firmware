@@ -3,29 +3,34 @@
 
 #include QMK_KEYBOARD_H
 
+enum layer_number {
+    _num = 0,
+    _calc = 1,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * ┌───┬───┬───-───┐
-     * │Esc│Tab│    Bsp│
+     * │NUM│   │  SEND │
      * ├───┼───┼───-───┤
-     * │Num│ / │ * │ - │
+     * │CLR│ / │ * │BSP│
      * ├───┼───┼───┼───┤
-     * │ 7 │ 8 │ 9 │   │
+     * │ 7 │ 8 │ 9 │ - │
      * ├───┼───┼───┤---│
-     * │ 4 │ 5 │ 6 │   │
+     * │ 4 │ 5 │ 6 │ + │
      * ├───┼───┼───┼───┤
      * │ 1 │ 2 │ 3 │   │
      * ├───┴───┼───┤Ent│
      * │ 0     │ . │   │
      * └───────┴───┴───┘
      */
-    [0] = LAYOUT_numpad_6x4(
-        KC_P1,   KC_P1,            KC_P1,
-        KC_P1,   KC_P1,   KC_P1,   KC_P1,
-        KC_P7,   KC_P8,   KC_P9,   KC_P1,
-        KC_P4,   KC_P5,   KC_P6,   KC_P1,
-        KC_P1,   KC_P2,   KC_P3,
-        KC_P0,            KC_P1, KC_P1
+    [_num] = LAYOUT(
+        KC_1,   KC_1,           KC_1,
+        KC_1,   KC_1,   KC_1,   KC_1,
+        KC_1,   KC_1,   KC_1,   KC_1,
+        KC_1,   KC_1,   KC_1,   KC_1,
+        KC_1,   KC_1,   KC_1,
+        KC_1,           KC_1,   KC_1
     ),
 
     /*
@@ -43,8 +48,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * │Insert │Del│   │
      * └───────┴───┘───┘
      */
-    [1] = LAYOUT_numpad_6x4(
-        QK_BOOT,   _______, _______, _______,
+    [_calc] = LAYOUT(
+        QK_BOOT, _______,          _______,
         _______, _______, _______, _______,
         KC_HOME, KC_UP,   KC_PGUP,
         KC_LEFT, XXXXXXX, KC_RGHT, _______,
