@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_calc] = LAYOUT(
         QK_BOOT, _______,          _______,
         _______, _______, _______, _______,
-        KC_HOME, KC_UP,   KC_PGUP,
+        KC_HOME, KC_UP,   KC_PGUP, _______,
         KC_LEFT, XXXXXXX, KC_RGHT, _______,
         KC_END,  KC_DOWN, KC_PGDN,
         KC_INS,           KC_DEL,  _______
